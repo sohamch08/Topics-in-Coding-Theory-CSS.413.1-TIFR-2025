@@ -2,11 +2,11 @@
 
 This repository hosts the lecture notes and resources for the course **CSS.413.1 — Topics in Coding Theory**, conducted at the Tata Institute of Fundamental Research (TIFR) during the **August–November 2025** semester.
 
-**Instructor:** Prof. Mrinal Kumar  
-**Scribe & Notes Author:** Soham Chatterjee  
+**Instructor:** [Prof. Mrinal Kumar](https://mrinalkr.bitbucket.io/)
+**Scribe & Notes Author:** [Soham Chatterjee](https://sohamch08.github.io/)
 **Semester:** August – November 2025  
 **Institute:** Tata Institute of Fundamental Research (TIFR)  
-**Course Page:** *(Add link here if available)*
+**Course Page:** [https://mrinalkr.bitbucket.io/courses/topics_in_codesF25/topics_in_codes_F25.html](https://mrinalkr.bitbucket.io/courses/topics_in_codesF25/topics_in_codes_F25.html)
 
 ---
 
