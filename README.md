@@ -49,7 +49,7 @@ An advanced exploration of **coding theory**, focusing on both foundational prin
 9. **Local Testing of Codes** – tests by Polischuk–Spielman, Friedl–Sudan, Arora–Sudan, Raz–Safra  
 10. **Applications** – explicit constructions, combinatorial & subspace designs, derandomization, hardness vs randomness  
 
-*(See the PDF or source for the full table of contents.)*
+> The full table of contents can be found inside the notes.
 
 ---
 
