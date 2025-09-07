@@ -1,0 +1,119 @@
+
+\documentclass[twoside]{article}
+\usepackage{url}
+
+\usepackage[nottoc,numbib]{tocbibind}
+\input{preamble-article}
+\input{letterfonts}
+\input{macros}
+
+\definecolor{mycolor1}{HTML}{E64C4C}
+\definecolor{mycolor2}{HTML}{1B2021}
+%\usepackage{anysize}
+%\marginsize{1.5in}{1in}{0.5in}{0.5in}
+
+\newcommand{\titre}[1]{\begingroup
+	\newlength{\drop}
+	\setlength{\drop}{0.1\textheight}
+	\centering
+	\settowidth{\unitlength}{\Huge\scshape CSS.413.1 Topics in Coding Theory\hspace{3pt}-temps}
+	\vspace*{\baselineskip}
+	\rule{\unitlength}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+	\rule{\unitlength}{0.4pt}\\[\baselineskip]
+	{\Huge\scshape\color{white} #1}\\[\baselineskip]
+	{\large\itshape Instructor: Mrinal Kumar}\\[\baselineskip]
+	{\large\itshape TIFR 2025, Aug-Nov}\\[0.2\baselineskip]
+	\rule{\unitlength}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+	
+	\rule{\unitlength}{1.6pt}\\[4\baselineskip]
+	{\Large\scshape Scribe: Soham Chatterjee\\[10mm] soham.chatterjee@tifr.res.in \\[2mm] Website: \href{https://sohamch08.github.io/}{\textcolor{black}{sohamch08.github.io}} }\par
+	\vfill
+	% {\large\scshape\color{white} 2024}\par
+	\endgroup}
+	
+
+
+
+
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+
+	\begin{tikzpicture}[remember picture,overlay]
+		\node [xshift=\paperwidth/2,yshift=\paperheight/2] at (current page.south west)[minimum width=\paperwidth,minimum height=\paperheight,top color=mycolor1,bottom color=mycolor2]{};
+	\end{tikzpicture}\\[3\baselineskip]
+
+	\titre{CSS.413.1 Topics in Coding Theory}
+\end{titlepage}
+
+
+%----------------------------------------------------------------------------------------
+%	TOC PAGE
+%----------------------------------------------------------------------------------------
+\pagebreak
+\thispagestyle{empty}
+{
+	\hypersetup{linkcolor=mytoccolor}
+	\tableofcontents
+}
+\newpage
+\pagestyle{fancy}  
+
+
+
+%----------------------------------------------------------------------------------------
+%	MAIN DOCUMENT STARTS HERE
+%----------------------------------------------------------------------------------------
+\section{Introduction and Targets}
+The content of this course will be the followings:
+\begin{itemize}[label=$\bullet$]
+	\item Introduction to Coding Theory: Definitions, Basic Properties, Linear Codes
+	\item Reed Solomon Codes, Reed Muller Codes
+	\item Decoding algorithms for Reed Solomon Codes:\begin{itemize}
+		\item Barlekamp-Welch Algorithm
+		\item Sudan's List Decoding Algorithm
+		\item Guruswami-Sudan List Decoding Algorithm upto the Johnson Bound
+	\end{itemize}
+	\item Univariate Multiplicity Codes -- Decoding upto the List Decoding Capacity
+	\item Bounds on the list size 
+	\item Local Decoding (LDC), Local Correction (LCC) of Codes 
+	\item Local Correction of Reed Muller Codes
+	\item High Variate Locally correctable/decodable codes
+	\item Local Decoding with constant queries -- Matching Vector Codes
+	\item Private Information Retrieval -- Definitions, constructions 
+	\item Lower Bounds for LDCs -- Lower Bound for 2-query/4-query/Kalz-Trevisan/Alrabiah-Guruswami
+	\item Local Testing of Codes:\begin{itemize}
+		\item Low-Degree Testing
+		\item Polischuk-Speilman Test 
+		\item Friedl-Sudan Test 
+		\item Arora-Sudan Test
+		\item Raz-Safra Test
+	\end{itemize}
+	\item Applications: Explicit constructions\begin{itemize}
+		\item Combinatorial Designs
+		\item Subspace Designs
+		\item Derandomization
+		\item Hardness vs Randomness
+	\end{itemize}
+\end{itemize}
+
+
+
+
+
+\newpage
+
+% \bibliographystyle{alpha}
+% \bibliography{polymethod_refs}
+
+
+
+
+
+\end{document}
