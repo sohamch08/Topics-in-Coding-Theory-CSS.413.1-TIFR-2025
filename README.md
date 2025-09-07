@@ -2,11 +2,11 @@
 
 This repository hosts the lecture notes and resources for the course **CSS.413.1 — Topics in Coding Theory**, conducted at the Tata Institute of Fundamental Research (TIFR) during the **August–November 2025** semester.
 
-**Instructor:** Prof. Mrinal Kumar  
-**Scribe & Notes Author:** Soham Chatterjee  
+**Instructor:** [Prof. Mrinal Kumar](https://mrinalkr.bitbucket.io/) 
+**Scribe & Notes Author:** [Soham Chatterjee](https://sohamch08.github.io/) 
 **Semester:** August – November 2025  
 **Institute:** Tata Institute of Fundamental Research (TIFR)  
-**Course Page:** *(Add link here if available)*
+**Course Page:** [https://mrinalkr.bitbucket.io/courses/topics_in_codesF25/topics_in_codes_F25.html](https://mrinalkr.bitbucket.io/courses/topics_in_codesF25/topics_in_codes_F25.html)
 
 ---
 
@@ -29,39 +29,8 @@ An advanced exploration of **coding theory**, focusing on both foundational prin
 
 ---
 
-##  Contents
+## 🎨 Typesetting & Theme
 
-- `topics-in-coding-theory.tex` — LaTeX source for the lecture notes  
-- `topics-in-coding-theory.pdf` — Compiled version of the notes  
-- `chapters/` — Individual chapter files (if split)  
-- `images/` — Figures and illustrations used in the notes  
-- `macros.tex`, `preamble.tex`, etc. — LaTeX utility and formatting files  
+These lecture notes were typeset in LaTeX using a **custom eye-candy theme** developed by the me:
 
----
-
-##  References
-
-- **List Decoding of Error-Correcting Codes** — Venkatesan Guruswami & Madhu Sudan  
-- **Decoding Beyond the Error-Correction Bound** — Madhu Sudan  
-- **Testing Polynomial Identities** — Sanjeev Arora & Madhu Sudan  
-- Additional lectures and research articles as referenced throughout the notes  
-
----
-
-##  Typesetting & Style
-
-These lecture notes are typeset in **LaTeX**, using a custom theme:
-
-- **Preamble and macros** organized for consistency and ease of editing  
-- **Visual styling** (fonts, headings, rules, spacing) aligned with TIFR lecture note aesthetics  
-- Modular chapter structure for maintainability  
-
----
-
-##  How to Compile
-
-```bash
-git clone https://github.com/<your-username>/CSS.413.1-Topics-in-Coding-Theory.git
-cd CSS.413.1-Topics-in-Coding-Theory
-pdflatex topics-in-coding-theory.tex
-
+- [Eye Candy Theme Repository](https://github.com/sohamch08/Eye-Candy-Lecture-Notes-Theme)
