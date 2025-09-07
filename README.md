@@ -1,4 +1,24 @@
-# CSS.413.1 — Topics in Coding Theory (TIFR, 2025)
+<!-- Banner -->
+<p align="center">
+  <img src="https://img.shields.io/badge/TIFR-Topics_in_Coding_Theory-0047AB?style=for-the-badge&logo=latex&logoColor=white" alt="Course Badge">
+</p>
+
+<h1 align="center">CSS.413.1 — Topics in Coding Theory</h1>
+<p align="center">
+  <b>Tata Institute of Fundamental Research (TIFR)</b> • Aug – Nov 2025  
+</p>
+
+<p align="center">
+  <a href="topics-in-coding-theory.pdf">
+    <img src="https://img.shields.io/badge/PDF-Download-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download PDF">
+  </a>
+  <a href="https://sohamch08.github.io">
+    <img src="https://img.shields.io/badge/Website-sohamch08.github.io-1E90FF?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="License">
+  </a>
+</p>
 
 This repository hosts the lecture notes and resources for the course **CSS.413.1 — Topics in Coding Theory**, conducted at the Tata Institute of Fundamental Research (TIFR) during the **August–November 2025** semester.
 
