@@ -1,6 +1,10 @@
 <!-- Banner -->
 <p align="center">
+  <!-- <img src="https://img.shields.io/badge/TIFR-Topics_in_Coding_Theory-0047AB?style=for-the-badge&logo=latex&logoColor=white" alt="Course Badge"> -->
+  <a href="https://mrinalkr.bitbucket.io/courses/topics_in_codesF25/topics_in_codes_F25.html" target="_blank">
   <img src="https://img.shields.io/badge/TIFR-Topics_in_Coding_Theory-0047AB?style=for-the-badge&logo=latex&logoColor=white" alt="Course Badge">
+</a>
+
 </p>
 
 <h1 align="center">CSS.413.1 — Topics in Coding Theory</h1>
