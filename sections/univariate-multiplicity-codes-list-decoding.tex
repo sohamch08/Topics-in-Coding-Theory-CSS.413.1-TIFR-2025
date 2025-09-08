@@ -1,0 +1,26 @@
+\section{Univariate Multiplicity Codes - List Decoding}
+Multiplicity codes are a family of recently-introduced algebraic error-correcting codes based on evaluations of polynomials and their derivatives. Specifically, a codeword of a multiplicity code is obtained by evaluating a polynomial of degree at most $k$, along with all its derivatives of order $<s$, at $n$ points of a finite field $\bbF_q^m$. These codes were introduced by Kopparty, Saraf and Yekhanin in \cite{KoppartySarafYekhanin_2014_Hrc}. Notice that when $s=1$ this is basically the Reed-Solomon code when $m=1$ and Reed-Muller code when $m>1$.
+
+Since we are interested in univariate multiplicity codes, we will set $m=1$. So we have three parameters $k,s,n$ and the field size $q$. 
+\subsection{Construction}
+
+Let $s,k,m\in \bbZ_0$ and let $q$ be a prime power. Let $\Sg= \bbF_q^{\binom{s+m-1}{m}}$. For $P(X_1,\dots, X_m)\in \bbF_q[X_1,\dots, X_m]$ we define the order $s$ evaluations of $P$ at $\textbf{a}\in \bbF_q$ to be the vector $(P^{(\textbf{i})}(\textbf{a}))_{w(\textbf{i}<s)}\in \Sg$ where $wt(\textbf{i})=\sum\limits_{j=1}^m i_j$. Let $E$ be a subset of $n$ points in $\bbF_q^m$.  
+\begin{Definition}{Multiplicity Codes}{}
+    The multiplicity code of order-$s$ evaluations of degree $k$ polynomials in $m$ variables over all points in $E^m$ is the code over alphabet $\Sg$, and has length $n$ and for each polynomial $P(\bmX)\in \bbF_q[\bmX]$ with $\deg(P)\leq k$ the corresponding codeword is $$\enc_{s,k,m,q}(P)=(P^{(<s)}(\textbf{a}))_{\textbf{a}\in E}\in\Sg^{n^m}$$
+\end{Definition}
+
+
+Our current interest is in the case $m=1$. So $$\enc_{s,k,1}(P)=\lt(\mat{f(a_1)\\ f^{(1)}(a_1)\\ \vdots\\ f^{(s-1)}(a_1)},\mat{f(a_2)\\ f^{(1)}(a_2)\\ \vdots\\ f^{(s-1)}(a_2)},\cdots, \mat{f(a_n)\\ f^{(1)}(a_n)\\ \vdots\\ f^{(s-1)}(a_n)}\rt)$$
+
+\begin{remark}
+    The above encoding in not the encoding $$\enc_{s,k,1}=\lt({f(a_1), f^{(1)}(a_1), \cdots, f^{(s-1)}(a_1)},{f(a_2), f^{(1)}(a_2), \cdots, f^{(s-1)}(a_2)},\cdots, {f(a_n), f^{(1)}(a_n), \cdots, f^{(s-1)}(a_n)}\rt)$$Each alphabet of the codeword is a vector of size $s$. The same holds for the multivariate case
+\end{remark}
+The above operation of treating a vector as a single alphabet is called \textit{folding}. 
+
+We will now calculate the rate and the distance of the code. The block length is $n^m$. Since we are evaluating all the derivatives of order $<s$, the alphabet size is $q^{\binom{s+m-1}{m}}$. So the number of codewords is $\lt(q^{\binom{s+m-1}{m}}\rt)^{n^m}=q^{n^m\binom{s+m-1}{m}}$. The number of polynomials in $m$ variables of degree at most $k$ is $q^{\binom{k+m}{m}}$. So the rate of the code is $$R=\frac{\binom{k+m}{m}}{n^m\binom{s+m-1}{m}}\approx \lt(\frac{k}{n s}\rt)^m$$
+
+Now using the Multiplicity Schwartz-Zippel lemma we can calculate the distance of the code. We have the relative distance to be $\delta=1-\frac{k}{ns}$. 
+\begin{Theorem}{}{}
+The rate and the distance of the multiplicity code are $R=\frac{\binom{k+m}{m}}{n^m\binom{s+m-1}{m}}\approx \lt(\frac{k}{n s}\rt)^m$ and $\delta=1-\frac{k}{ns}$ respectively.
+\end{Theorem}
+We usually think $m$ and $s$ to be large constant. So as multiplicity code achieves the Singleton bound asymptotically.
