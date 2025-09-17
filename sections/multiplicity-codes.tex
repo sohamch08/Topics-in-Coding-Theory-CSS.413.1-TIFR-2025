@@ -1,0 +1,74 @@
+\section{Multiplicity Codes}
+Multiplicity codes are a family of recently-introduced algebraic error-correcting codes based on evaluations of polynomials and their derivatives. Specifically, a codeword of a multiplicity code is obtained by evaluating a polynomial of degree at most $k$, along with all its derivatives of order $<s$, at $n$ points of a finite field $\bbF_q^m$. These codes were introduced by Kopparty, Saraf and Yekhanin in \cite{KoppartySarafYekhanin_2014_Hrc}. Notice that when $s=1$ this is basically the Reed-Solomon code when $m=1$ and Reed-Muller code when $m>1$.
+\subsection{Construction}
+Let $s,k,m\in \bbZ_0$ and let $q$ be a prime power. Let $\Sg= \bbF_q^{\binom{s+m-1}{m}}$. For $P(X_1,\dots, X_m)\in \bbF_q[X_1,\dots, X_m]$ we define the order $s$ evaluations of $P$ at $\textbf{a}\in \bbF_q$ to be the vector $(P^{(\textbf{i})}(\textbf{a}))_{w(\textbf{i}<s)}\in \Sg$ where $wt(\textbf{i})=\sum\limits_{j=1}^m i_j$. Let $E$ be a subset of $n$ points in $\bbF_q^m$.  
+\begin{Definition}{Multiplicity Codes}{}
+    The multiplicity code of order-$s$ evaluations of degree $k$ polynomials in $m$ variables over all points in $E^m$ is the code over alphabet $\Sg$, and has length $n$ and for each polynomial $P(\bmX)\in \bbF_q[\bmX]$ with $\deg(P)\leq k$ the corresponding codeword is $$\enc_{s,k,m,q}(P)=(P^{(<s)}(\textbf{a}))_{\textbf{a}\in E}\in\Sg^{n^m}$$
+\end{Definition}
+
+
+Our current interest is in the case $m=1$. So $$\enc_{s,k,1}(P)=\lt(\mat{f(a_1)\\ f^{(1)}(a_1)\\ \vdots\\ f^{(s-1)}(a_1)},\mat{f(a_2)\\ f^{(1)}(a_2)\\ \vdots\\ f^{(s-1)}(a_2)},\cdots, \mat{f(a_n)\\ f^{(1)}(a_n)\\ \vdots\\ f^{(s-1)}(a_n)}\rt)$$
+
+\begin{remark}
+    The above encoding in not the encoding $$\enc_{s,k,1}=\lt({f(a_1), f^{(1)}(a_1), \cdots, f^{(s-1)}(a_1)},{f(a_2), f^{(1)}(a_2), \cdots, f^{(s-1)}(a_2)},\cdots, {f(a_n), f^{(1)}(a_n), \cdots, f^{(s-1)}(a_n)}\rt)$$Each alphabet of the codeword is a vector of size $s$. The same holds for the multivariate case
+\end{remark}
+The above operation of treating a vector as a single alphabet is called \textit{folding}. 
+\subsection{Rate and Distance of Multiplicity Codes}
+We will now calculate the rate and the distance of the code. The block length is $n^m$. Since we are evaluating all the derivatives of order $<s$, the alphabet size is $q^{\binom{s+m-1}{m}}$. So the number of codewords is $\lt(q^{\binom{s+m-1}{m}}\rt)^{n^m}=q^{n^m\binom{s+m-1}{m}}$. The number of polynomials in $m$ variables of degree at most $k$ is $q^{\binom{k+m}{m}}$. So the rate of the code is $$R=\frac{\binom{k+m}{m}}{n^m\binom{s+m-1}{m}}\approx \lt(\frac{k}{n s}\rt)^m$$
+
+Now using the Multiplicity Schwartz-Zippel lemma we can calculate the distance of the code. We have the relative distance to be $\delta=1-\frac{k}{ns}$. 
+
+\begin{Theorem}{}{}
+The rate and the distance of the multiplicity code are $R=\frac{\binom{k+m}{m}}{n^m\binom{s+m-1}{m}}\approx \lt(\frac{k}{n s}\rt)^m$ and $\delta=1-\frac{k}{ns}$ respectively.
+\end{Theorem}
+We usually think $m$ and $s$ to be large constant. So as multiplicity code achieves the Singleton bound asymptotically.
+\newpage
+
+\subsection{List Decoding of Univariate Multiplicity Codes up to Capacity}
+Since we are interested in univariate multiplicity codes, we will set $m=1$. So we have three parameters $k,s,n$ and the field size $q$. Therefore, as we have calculated before the rate and distance of the univariate multiplicity code are $R=\frac{k+1}{ns}\approx \frac{k}{sn}$ and $\delta=1-\frac{k}{ns}$ respectively. 
+\subsubsection{Polynomial List Size up to Capacity}
+\begin{Theorem}{\cite{Kopparty_2015_,GuruswamiWang_2011}}{}
+For every $\eps\in(0,1)$, there exists $s_0\approx \frac1{\eps^2}$ such that the univariate multiplicity code with multiplicity parameter $s>s_0$ can be efficiently list decodable from $\lt(1-\frac{k}{ns}-\eps\rt)$ fraction of errors.
+\end{Theorem}We will give the proof in \cite{GuruswamiWang_2011}. It uses polynomial method based arguments. This proof has two steps.\begin{enumerate}[label=Step \arabic*:, leftmargin=*]
+    \item Interpolation
+    \item Reconstruction of close enough codewords
+\end{enumerate}So assume the received word is $w=\lt(\alpha_0,\beta_{i,0},\beta_{i,1},\dots, \beta_{i,s-1}\rt)_{i=1}^n$ and also consider the parameter $t=\sqrt{s}\approx \frac1{\eps}$. With this we will show the proof of the above theorem. 
+
+\begin{proof}
+    \textbf{Step 1: Interpolation}
+
+
+In step 1 we will look for an $m+1$ variate polynomial $Q(X,Y_1,\dots, Y_t)$ which is linear in $Y_i$'s i.e. $$Q(X,Y_1,\dots, Y_m)=A_0(X)+A_1(X)Y_1+\cdots +A_t(X)Y_t$$Let $f$ is a close enough polynomial. Then define $R_f(X)=Q(X,f(X), f^{(1)}(X),\dots, f^{(t)}(X))$.  Then we want $R_f(X)\equiv 0$. And also we want whenever $f$ and the received word agree on some point $R_f(X)$ has a zero of high multiplicity at that point. So let $f$ agrees with the received word at $\alpha$. Then $$R_f(\alpha_i)=Q(\alpha_i, f(\alpha_i), f^{(1)}(\alpha_i),\dots, f^{(t)}(\alpha_i))=Q(\alpha_i, \beta_{i,0},\beta_{i,1},\dots, \beta_{i,t})=0$$Now \begin{align*}
+            R_f^{(1)}(X)=\frac{d}{dX}\lt(\sum\limits_{i=0}^tA_i(X)f^{(i)}(X)\rt)=\sum\limits_{i=0}^t\frac{dA_i}{dX}(X)\cdot f^{(i)}(X)+A_i(X)\cdot f^{(i+1)}(X)
+        \end{align*}Therefore $$ R_f^{(1)}(\alpha_i)=\sum\limits_{j=0}^t\frac{dA_j}{dX}(\alpha_i)\cdot \beta_{i,j}+A_j(\alpha)\cdot \beta_{i,j+1}$$ So we want as many derivatives of $R_f$ to be zero as possible. \begin{observation}
+In $R_f^{(k)}(X)$ we needed the evaluations of $\beta_{i,0},\dots, \beta_{i,t},\beta_{i,t+1},\dots, \beta_{i,t+i}$.
+\end{observation}Since we have evaluations till $(s-1)^{th}$ order derivative we can only take derivative of $R_f$ upto order $(s-1-t)$. So we want $R_f^{(k)}(\alpha_i)\equiv 0$ for all $k\in\{0,\dots, s-1-t\}$. And $Q$ follows the following properties:
+\begin{itemize}
+    \item $\deg(A_i)\leq D$ 
+    \item For all $i\in[n]$, $R_f^{(k)}(\alpha_i)\equiv 0$ for all $k\in\{0,\dots, s-1-t\}$. To make it simple define the operator $\Psi$ as $$\Psi(Q)\coloneqq \sum\limits_{i=0}^t(A_i^{(1)}(X)Y_i+A_i(X)Y_{i+1})$$ and $\Psi^i(Q)=\Psi(\Psi^{i-1}(Q))$, $\Psi^0(Q)=Q$. Then $\forall\ i\in[n]$, $\forall\ j\in\{0,\dots, s-1-t\}$, $\Psi^j(Q)(\alpha,\overline{\beta}_i)=0$.
+\end{itemize}
+\begin{observation}
+    Each point of agreement of $f$ is a root of $R_f$ of multiplicity at least $s-m$.
+\end{observation}
+Now for step 1 to return a $Q$ successfully we need the number of variables to be more than the number of equations. The number of variables is $(t+1)(D+1)$. The number of equations is $n(s-m)$. So we need $$(t+1)(D+1)>n(s-t)\iff D+1>\frac{n(s-t)}{t+1}$$Hence enough to take $D=\frac{n(s-t)}{t+1}$. Then step 1 returns a nonzero $Q$. 
+
+\begin{observation}
+    If $f$ has agreement $>\frac{D+k}{s-t}$ with the received word then $R_f(X)\equiv 0$ as $\deg(R_f)\leq D+k$ and each point of agreement is a zero of multiplicity at least $s-t$.
+\end{observation}
+So the number of agreement $>\frac{D+k}{s-t}=\frac{\frac{n(s-t)}{t+1}+k}{s-t}=\frac{n}{t+1}+\frac{k}{s}\cdot \frac{s}{s-t}\approx \eps n+\frac{k}{s}$ since we take $s$ to be constant. \parinf\vspace*{5mm}
+
+\textbf{Step 2: Reconstruction of close enough codewords}\parinn
+
+Find all degree $k$, $f(X)$ such that \begin{enumerate}
+    \item $Q(X,f(X), f^{(1)}(X),\dots, f^{(t)}(X))\equiv 0$ [This step looks like solving a differential equation]
+    \item $f$ has large agreement with the received word.
+\end{enumerate}
+
+\end{proof}
+\begin{Theorem}{\cite{KoppartyRonZewiSarafWootters_2018_IDo_CONF}}{}
+The list size above is of constant size only depends on $\eps$ and independent of the block length.
+\end{Theorem}
+
+
+\subsubsection{Constant List Size up to Capacity}
+\subsection{Local Correction of Multiplicity Codes}
