@@ -38,37 +38,47 @@ For every $\eps\in(0,1)$, there exists $s_0\approx \frac1{\eps^2}$ such that the
     \textbf{Step 1: Interpolation}
 
 
-In step 1 we will look for an $m+1$ variate polynomial $Q(X,Y_1,\dots, Y_t)$ which is linear in $Y_i$'s i.e. $$Q(X,Y_1,\dots, Y_m)=A_0(X)+A_1(X)Y_1+\cdots +A_t(X)Y_t$$Let $f$ is a close enough polynomial. Then define $R_f(X)=Q(X,f(X), f^{(1)}(X),\dots, f^{(t)}(X))$.  Then we want $R_f(X)\equiv 0$. And also we want whenever $f$ and the received word agree on some point $R_f(X)$ has a zero of high multiplicity at that point. So let $f$ agrees with the received word at $\alpha$. Then $$R_f(\alpha_i)=Q(\alpha_i, f(\alpha_i), f^{(1)}(\alpha_i),\dots, f^{(t)}(\alpha_i))=Q(\alpha_i, \beta_{i,0},\beta_{i,1},\dots, \beta_{i,t})=0$$Now \begin{align*}
-            R_f^{(1)}(X)=\frac{d}{dX}\lt(\sum\limits_{i=0}^tA_i(X)f^{(i)}(X)\rt)=\sum\limits_{i=0}^t\frac{dA_i}{dX}(X)\cdot f^{(i)}(X)+A_i(X)\cdot f^{(i+1)}(X)
-        \end{align*}Therefore $$ R_f^{(1)}(\alpha_i)=\sum\limits_{j=0}^t\frac{dA_j}{dX}(\alpha_i)\cdot \beta_{i,j}+A_j(\alpha)\cdot \beta_{i,j+1}$$ So we want as many derivatives of $R_f$ to be zero as possible. \begin{observation}
-In $R_f^{(k)}(X)$ we needed the evaluations of $\beta_{i,0},\dots, \beta_{i,t},\beta_{i,t+1},\dots, \beta_{i,t+i}$.
-\end{observation}Since we have evaluations till $(s-1)^{th}$ order derivative we can only take derivative of $R_f$ upto order $(s-1-t)$. So we want $R_f^{(k)}(\alpha_i)\equiv 0$ for all $k\in\{0,\dots, s-1-t\}$. And $Q$ follows the following properties:
+In step 1 we will look for an $m+1$ variate polynomial $Q(X,Y_1,\dots, Y_t)$ which is linear in $Y_i$'s i.e. $$Q(X,Y_1,\dots, Y_m)=A_0(X)+A_1(X)Y_1+\cdots +A_t(X)Y_t$$Let $f$ is a close enough polynomial. Then define $R_f(X)=Q(X,f(X), f^{(1)}(X),\dots, f^{(t-1)}(X))$.  Then we want $R_f(X)\equiv 0$. And also we want whenever $f$ and the received word agree on some point $R_f(X)$ has a zero of high multiplicity at that point. So let $f$ agrees with the received word at $\alpha$. Then $$R_f(\alpha_i)=Q(\alpha_i, f(\alpha_i), f^{(1)}(\alpha_i),\dots, f^{(t-1)}(\alpha_i))=Q(\alpha_i, \beta_{i,0},\beta_{i,1},\dots, \beta_{i,t-1})=0$$Now \begin{align*}
+            R_f^{(1)}(X)=\frac{dA_0}{dX}(X)+\frac{d}{dX}\lt(\sum\limits_{i=1}^tA_i(X)f^{(i-1)}(X)\rt)=\frac{dA_0}{dX}(X)+\sum\limits_{i=1}^t\frac{dA_i}{dX}(X)\cdot f^{(i-1)}(X)+A_i(X)\cdot f^{(i)}(X)
+        \end{align*}Therefore $$ R_f^{(1)}(\alpha_i)=\frac{dA_0}{dX}(\alpha_0)+\sum\limits_{j=1}^t\frac{dA_j}{dX}(\alpha_i)\cdot \beta_{i,j-1}+A_j(\alpha)\cdot \beta_{i,j}$$ So we want as many derivatives of $R_f$ to be zero as possible. \begin{observation}
+In $R_f^{(k)}(X)$ we needed the evaluations of $\beta_{i,0},\dots, \beta_{i,t-1},\beta_{i,t},\dots, \beta_{i,t+i-1}$.
+\end{observation}Since we have evaluations till $(s-1)^{th}$ order derivative we can only take derivative of $R_f$ upto order $(s-t)$. So we want $R_f^{(k)}(\alpha_i)\equiv 0$ for all $k\in\{0,\dots, s-t\}$. And $Q$ follows the following properties:
 \begin{itemize}
     \item $\deg(A_i)\leq D$ 
-    \item For all $i\in[n]$, $R_f^{(k)}(\alpha_i)\equiv 0$ for all $k\in\{0,\dots, s-1-t\}$. To make it simple define the operator $\Psi$ as $$\Psi(Q)\coloneqq \sum\limits_{i=0}^t(A_i^{(1)}(X)Y_i+A_i(X)Y_{i+1})$$ and $\Psi^i(Q)=\Psi(\Psi^{i-1}(Q))$, $\Psi^0(Q)=Q$. Then $\forall\ i\in[n]$, $\forall\ j\in\{0,\dots, s-1-t\}$, $\Psi^j(Q)(\alpha,\overline{\beta}_i)=0$.
+    \item For all $i\in[n]$, $R_f^{(k)}(\alpha_i)\equiv 0$ for all $k\in\{0,\dots, s-t\}$. To make it simple define the operator $\Psi$ as $$\Psi(Q)\coloneqq A_0^{(1)}(X)+ \sum\limits_{i=0}^t(A_i^{(1)}(X)Y_i+A_i(X)Y_{i+1})$$ and $\Psi^i(Q)=\Psi(\Psi^{i-1}(Q))$, $\Psi^0(Q)=Q$. Then $\forall\ i\in[n]$, $\forall\ j\in\{0,\dots, s-t\}$, $\Psi^j(Q)(\alpha,\overline{\beta}_i)=0$.
 \end{itemize}
 \begin{observation}
-    Each point of agreement of $f$ is a root of $R_f$ of multiplicity at least $s-m$.
+    Each point of agreement of $f$ is a root of $R_f$ of multiplicity at least $s-t+1$.
 \end{observation}
-Now for step 1 to return a $Q$ successfully we need the number of variables to be more than the number of equations. The number of variables is $(t+1)(D+1)$. The number of equations is $n(s-m)$. So we need $$(t+1)(D+1)>n(s-t)\iff D+1>\frac{n(s-t)}{t+1}$$Hence enough to take $D=\frac{n(s-t)}{t+1}$. Then step 1 returns a nonzero $Q$. 
+Now for step 1 to return a $Q$ successfully we need the number of variables to be more than the number of equations. The number of variables is $(t+1)(D+1)$. The number of equations is $n(s-t+1)$. So we need $$(t+1)(D+1)>n(s-t+1)\iff D+1>\frac{n(s-t)}{t+1}$$Hence enough to take $D=\frac{n(s-t+1)}{t+1}$. Then step 1 returns a nonzero $Q$. 
 
 \begin{observation}
-    If $f$ has agreement $>\frac{D+k}{s-t}$ with the received word then $R_f(X)\equiv 0$ as $\deg(R_f)\leq D+k$ and each point of agreement is a zero of multiplicity at least $s-t$.
+    If $f$ has agreement $>\frac{D+k}{s-t+1}$ with the received word then $R_f(X)\equiv 0$ as $\deg(R_f)\leq D+k$ and each point of agreement is a zero of multiplicity at least $s-t+1$.
 \end{observation}
-So the number of agreement $>\frac{D+k}{s-t}=\frac{\frac{n(s-t)}{t+1}+k}{s-t}=\frac{n}{t+1}+\frac{k}{s}\cdot \frac{s}{s-t}\approx \eps n+\frac{k}{s}$ since we take $s$ to be constant. \parinf\vspace*{5mm}
+So the number of agreement $>\frac{D+k}{s-t+1}=\frac{\frac{n(s-t+1)}{t+1}+k}{s-t+1}=\frac{n}{t+1}+\frac{k}{s}\cdot \frac{s}{s-t+1}\approx \eps n+\frac{k}{s}$ since we take $s$ to be constant. \parinf\vspace*{5mm}
 
 \textbf{Step 2: Reconstruction of close enough codewords}\parinn
 
-Find all degree $k$, $f(X)$ such that \begin{enumerate}
-    \item $Q(X,f(X), f^{(1)}(X),\dots, f^{(t)}(X))\equiv 0$ [This step looks like solving a differential equation]
+Find all degree $k$, $f(X)$ such that \begin{enumerate}[label=Step 2.\arabic*:, leftmargin=*]
+    \item $Q(X,f(X), f^{(1)}(X),\dots, f^{(t-1)}(X))\equiv 0$ [This step looks like solving a differential equation]
     \item $f$ has large agreement with the received word.
 \end{enumerate}
-
+For the step 2.1 let $f_1,\dots, f_l$ are the solutions. Then any linear combination of them is also a solution. Hence the space of solutions of $f$ is a vector space over  the field. We need to argue that the dimension of this space is at small. Let $S$ be the set of all $f\in \bbF_q[X]$ such that $\deg(f)\leq k$ and $Q(X,\ovf(X))\equiv 0$. Then by \lmref{subspace-dim-low} we have $\dim S\leq t$. Since $s$ is constant, $t$ is also constant. So the number of solutions is at most $q^t$. Hence the list size is at most $q^t=\poly(n)$. 
 \end{proof}
-\begin{Theorem}{\cite{KoppartyRonZewiSarafWootters_2018_IDo_CONF}}{}
-The list size above is of constant size only depends on $\eps$ and independent of the block length.
-\end{Theorem}
+\begin{lemma}{}{subspace-dim-low}
+$S$ is a subspace of dimension at most $t$. 
+\end{lemma}
+\begin{proof}
+WLOG we can assume $A_i(0)\neq 0$ for all $i\in\{0,\dots, t\}$ otherwise we can do a random shift to make it nonzero. Let $f\in S$, then $$Q(X,f(X),f^{(1)}(X),\dots, f^{(t-1)}(X))=A_0(X)+A_1(X)\cdot f(X)+A_2(X)f^{(1)}(X)+\cdots +A_t(X)\cdot f^{(t-1)}(X)\equiv 0$$Let $A_i(X)=\sum\limits_{j=0}^D A_{i,j}X^j$ for all $i\in\{0,\dots, t\}$ and $f(X)=\sum\limits_{j=0}^k f_j X^j$. Therefore $f^{(i)}(X)=\sum\limits_{j=0}^{k-i}\frac{(i+j)!}{j!}f_{i+j}X^j$. Then the coefficient of $X^i$ in $Q(X,f(X),f^{(1)}(X),\dots, f^{(t-1)}(X))$ is \begin{align*}
+    &A_{0,i}+\lt(\sum\limits_{j=0}^iA_{1,j}\cdot f_{i-j}\rt)+\lt( \sum\limits_{j=0}^i A_{2,j}\cdot  (i+1-j)f_{i+1-j} \rt)+\cdots + \lt( \sum\limits_{j=0}^i A_{t,j}\cdot \frac{(t-1+i-j)!}{(i-j)!}f_{t-1+i-j} \rt)\\ 
+    = & A_{0,i}+\sum\limits_{l=1}^{t}\sum\limits_{j=0}^i A_{l,i-j}\cdot \frac{(l-1+j)!}{j!}f_{l-1+j}
+\end{align*}Since $f$ is a solution this coefficient is $0$. Notice that in the above linear equation coefficient of $X^i$ depends on $f_j$ for all $j<i+t$ and term multiplied to 
+\end{proof}
 
 
 \subsubsection{Constant List Size up to Capacity}
+
+\begin{Theorem}{\cite{KoppartyRonZewiSarafWootters_2018_IDo_CONF}}{}
+The list size above is of constant size only depends on $\eps$ and independent of the block length.
+\end{Theorem}
 \subsection{Local Correction of Multiplicity Codes}
