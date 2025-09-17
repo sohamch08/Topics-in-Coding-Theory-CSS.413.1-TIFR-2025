@@ -66,13 +66,12 @@ Find all degree $k$, $f(X)$ such that \begin{enumerate}[label=Step 2.\arabic*:, 
 For the step 2.1 let $f_1,\dots, f_l$ are the solutions. Then any linear combination of them is also a solution. Hence the space of solutions of $f$ is a vector space over  the field. We need to argue that the dimension of this space is at small. Let $S$ be the set of all $f\in \bbF_q[X]$ such that $\deg(f)\leq k$ and $Q(X,\ovf(X))\equiv 0$. Then by \lmref{subspace-dim-low} we have $\dim S\leq t$. Since $s$ is constant, $t$ is also constant. So the number of solutions is at most $q^t$. Hence the list size is at most $q^t=\poly(n)$. 
 \end{proof}
 \begin{lemma}{}{subspace-dim-low}
-$S$ is a subspace of dimension at most $t$. 
+$S$ is a subspace of dimension at most $t-1$. 
 \end{lemma}
 \begin{proof}
 WLOG we can assume $A_i(0)\neq 0$ for all $i\in\{0,\dots, t\}$ otherwise we can do a random shift to make it nonzero. Let $f\in S$, then $$Q(X,f(X),f^{(1)}(X),\dots, f^{(t-1)}(X))=A_0(X)+A_1(X)\cdot f(X)+A_2(X)f^{(1)}(X)+\cdots +A_t(X)\cdot f^{(t-1)}(X)\equiv 0$$Let $A_i(X)=\sum\limits_{j=0}^D A_{i,j}X^j$ for all $i\in\{0,\dots, t\}$ and $f(X)=\sum\limits_{j=0}^k f_j X^j$. Therefore $f^{(i)}(X)=\sum\limits_{j=0}^{k-i}\frac{(i+j)!}{j!}f_{i+j}X^j$. Then the coefficient of $X^i$ in $Q(X,f(X),f^{(1)}(X),\dots, f^{(t-1)}(X))$ is \begin{align*}
-    &A_{0,i}+\lt(\sum\limits_{j=0}^iA_{1,j}\cdot f_{i-j}\rt)+\lt( \sum\limits_{j=0}^i A_{2,j}\cdot  (i+1-j)f_{i+1-j} \rt)+\cdots + \lt( \sum\limits_{j=0}^i A_{t,j}\cdot \frac{(t-1+i-j)!}{(i-j)!}f_{t-1+i-j} \rt)\\ 
-    = & A_{0,i}+\sum\limits_{l=1}^{t}\sum\limits_{j=0}^i A_{l,i-j}\cdot \frac{(l-1+j)!}{j!}f_{l-1+j}
-\end{align*}Since $f$ is a solution this coefficient is $0$. Notice that in the above linear equation coefficient of $X^i$ depends on $f_j$ for all $j<i+t$ and term multiplied to 
+    &A_{0,i}+\lt(\sum\limits_{j=0}^iA_{1,j}\cdot f_{i-j}\rt)+\lt( \sum\limits_{j=0}^i A_{2,j}\cdot  (i+1-j)f_{i+1-j} \rt)+\cdots + \lt( \sum\limits_{j=0}^i A_{t,j}\cdot \frac{(t-1+i-j)!}{(i-j)!}f_{t-1+i-j} \rt)= A_{0,i}+\sum\limits_{l=1}^{t}\sum\limits_{j=0}^i A_{l,i-j}\cdot \frac{(l-1+j)!}{j!}f_{l-1+j}
+\end{align*}Since $f$ is a solution this coefficient is $0$. Notice that in the above linear equation coefficient of $X^i$ depends on $f_j$ for all $j<i+t$. Hence we can determie $f_{i+t-1}$ uniquely if we have $f_0,\dots, f_{i+t-2}$ by using the coefficient of $X^i$ to be zero. The coefficient of $X^0$ needs $f_0,\dots, f_{t-1}$. So once we fix $f_0,\dots, f_{t-2}$ we can determine uniquely all the other coefficients. Hence the dimension of $S$ is at most $t-1$.
 \end{proof}
 
 
