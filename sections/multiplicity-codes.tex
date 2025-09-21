@@ -18,7 +18,7 @@ We will now calculate the rate and the distance of the code. The block length is
 
 Now using the Multiplicity Schwartz-Zippel lemma we can calculate the distance of the code. We have the relative distance to be $\delta=1-\frac{k}{ns}$. 
 
-\begin{Theorem}{}{}
+\begin{Theorem}{}{rate-dist-multicode}
 The rate and the distance of the multiplicity code are $R=\frac{\binom{k+m}{m}}{n^m\binom{s+m-1}{m}}\approx \lt(\frac{k}{n s}\rt)^m$ and $\delta=1-\frac{k}{ns}$ respectively.
 \end{Theorem}
 We usually think $m$ and $s$ to be large constant. So as multiplicity code achieves the Singleton bound asymptotically.
@@ -32,9 +32,10 @@ For every $\eps\in(0,1)$, there exists $s_0\approx \frac1{\eps^2}$ such that the
 \end{Theorem}We will give the proof in \cite{GuruswamiWang_2011}. It uses polynomial method based arguments. This proof has two steps.\begin{enumerate}[label=Step \arabic*:, leftmargin=*]
     \item Interpolation
     \item Reconstruction of close enough codewords
-\end{enumerate}So assume the received word is $w=\lt(\alpha_0,\beta_{i,0},\beta_{i,1},\dots, \beta_{i,s-1}\rt)_{i=1}^n$ and also consider the parameter $t=\sqrt{s}\approx \frac1{\eps}$. With this we will show the proof of the above theorem. 
+\end{enumerate}So assume the received word is $w=\lt(\alpha_0,\beta_{i,0},\beta_{i,1},\dots, \beta_{i,s-1}\rt)_{i=1}^n$. With this we will show the proof of the above theorem. 
 
-\begin{proof}
+\begin{proof} First we will set some parameters. Let $t=\sqrt{s}\approx \frac1{\eps}$. 
+
     \textbf{Step 1: Interpolation}
 
 
@@ -55,7 +56,7 @@ Now for step 1 to return a $Q$ successfully we need the number of variables to b
 \begin{observation}
     If $f$ has agreement $>\frac{D+k}{s-t+1}$ with the received word then $R_f(X)\equiv 0$ as $\deg(R_f)\leq D+k$ and each point of agreement is a zero of multiplicity at least $s-t+1$.
 \end{observation}
-So the number of agreement $>\frac{D+k}{s-t+1}=\frac{\frac{n(s-t+1)}{t+1}+k}{s-t+1}=\frac{n}{t+1}+\frac{k}{s}\cdot \frac{s}{s-t+1}\approx \eps n+\frac{k}{s}$ since we take $s$ to be constant. \parinf\vspace*{5mm}
+So the number of agreements is more than  $$\frac{D+k}{s-t+1}=\frac{\frac{n(s-t+1)}{t+1}+k}{s-t+1}=\frac{n}{t+1}+\frac{k}{s}\cdot \frac{s}{s-t+1}\approx \eps n+\frac{k}{s}$$ since we take $s$ to be constant. \parinf\vspace*{5mm}
 
 \textbf{Step 2: Reconstruction of close enough codewords}\parinn
 
@@ -63,21 +64,53 @@ Find all degree $k$, $f(X)$ such that \begin{enumerate}[label=Step 2.\arabic*:, 
     \item $Q(X,f(X), f^{(1)}(X),\dots, f^{(t-1)}(X))\equiv 0$ [This step looks like solving a differential equation]
     \item $f$ has large agreement with the received word.
 \end{enumerate}
-For the step 2.1 let $f_1,\dots, f_l$ are the solutions. Then any linear combination of them is also a solution. Hence the space of solutions of $f$ is a vector space over  the field. We need to argue that the dimension of this space is at small. Let $S$ be the set of all $f\in \bbF_q[X]$ such that $\deg(f)\leq k$ and $Q(X,\ovf(X))\equiv 0$. Then by \lmref{subspace-dim-low} we have $\dim S\leq t$. Since $s$ is constant, $t$ is also constant. So the number of solutions is at most $q^t$. Hence the list size is at most $q^t=\poly(n)$. 
+For the step 2.1 let $f_1,\dots, f_l$ are the solutions. Then any linear combination of them is also a solution. Hence the space of solutions of $f$ is a vector space over  the field. We need to argue that the dimension of this space is at small. Let $S$ be the set of all $f\in \bbF_q[X]$ such that $\deg(f)\leq k$ and $Q(X,\ovf(X))\equiv 0$. Then by \lmref{subspace-dim-low} we have $\dim S\leq t-1$. Since $s$ is constant, $t$ is also constant. So the number of solutions is at most $q^{t-1}$. Hence the list size is at most $q^{t-1}=\poly(n)$. 
 \end{proof}
 \begin{lemma}{}{subspace-dim-low}
 $S$ is a subspace of dimension at most $t-1$. 
 \end{lemma}
 \begin{proof}
-WLOG we can assume $A_i(0)\neq 0$ for all $i\in\{0,\dots, t\}$ otherwise we can do a random shift to make it nonzero. Let $f\in S$, then $$Q(X,f(X),f^{(1)}(X),\dots, f^{(t-1)}(X))=A_0(X)+A_1(X)\cdot f(X)+A_2(X)f^{(1)}(X)+\cdots +A_t(X)\cdot f^{(t-1)}(X)\equiv 0$$Let $A_i(X)=\sum\limits_{j=0}^D A_{i,j}X^j$ for all $i\in\{0,\dots, t\}$ and $f(X)=\sum\limits_{j=0}^k f_j X^j$. Therefore $f^{(i)}(X)=\sum\limits_{j=0}^{k-i}\frac{(i+j)!}{j!}f_{i+j}X^j$. Then the coefficient of $X^i$ in $Q(X,f(X),f^{(1)}(X),\dots, f^{(t-1)}(X))$ is \begin{align*}
-    &A_{0,i}+\lt(\sum\limits_{j=0}^iA_{1,j}\cdot f_{i-j}\rt)+\lt( \sum\limits_{j=0}^i A_{2,j}\cdot  (i+1-j)f_{i+1-j} \rt)+\cdots + \lt( \sum\limits_{j=0}^i A_{t,j}\cdot \frac{(t-1+i-j)!}{(i-j)!}f_{t-1+i-j} \rt)= A_{0,i}+\sum\limits_{l=1}^{t}\sum\limits_{j=0}^i A_{l,i-j}\cdot \frac{(l-1+j)!}{j!}f_{l-1+j}
+WLOG we can assume $A_i(0)\neq 0$ for all $i\in\{0,\dots, t\}$ otherwise we can do a random shift to make it nonzero. Let $f\in S$, then $$Q(X,f(X),f^{(1)}(X),\dots, f^{(t-1)}(X))=A_0(X)+A_1(X)\cdot f(X)+A_2(X)f^{(1)}(X)+\cdots +A_t(X)\cdot f^{(t-1)}(X)\equiv 0$$Let $A_i(X)=\sum\limits_{j=0}^D A_{i,j}X^j$ for all $i\in\{0,\dots, t\}$ and $f(X)=\sum\limits_{j=0}^k f_j X^j$. Therefore $$f^{(i)}(X)=\sum\limits_{j=0}^{k-i}\frac{(i+j)!}{j!}f_{i+j}X^j$$ Then the coefficient of $X^i$ in $Q(X,f(X),f^{(1)}(X),\dots, f^{(t-1)}(X))$ is \begin{align*}
+    &A_{0,i}+\lt(\sum\limits_{j=0}^iA_{1,j}\cdot f_{i-j}\rt)+\lt( \sum\limits_{j=0}^i A_{2,j}\cdot  (i+1-j)f_{i+1-j} \rt)+\cdots + \lt( \sum\limits_{j=0}^i A_{t,j}\cdot \frac{(t-1+i-j)!}{(i-j)!}f_{t-1+i-j} \rt)\\ 
+    =& A_{0,i}+\sum\limits_{l=1}^{t}\sum\limits_{j=0}^i A_{l,i-j}\cdot \frac{(l-1+j)!}{j!}f_{l-1+j}
 \end{align*}Since $f$ is a solution this coefficient is $0$. Notice that in the above linear equation coefficient of $X^i$ depends on $f_j$ for all $j<i+t$. Hence we can determie $f_{i+t-1}$ uniquely if we have $f_0,\dots, f_{i+t-2}$ by using the coefficient of $X^i$ to be zero. The coefficient of $X^0$ needs $f_0,\dots, f_{t-1}$. So once we fix $f_0,\dots, f_{t-2}$ we can determine uniquely all the other coefficients. Hence the dimension of $S$ is at most $t-1$.
 \end{proof}
 
 
 \subsubsection{Constant List Size up to Capacity}
-
+Now we will show that not only the list size is polynomial but it is actually constant, more precisely it only depends on $\eps$.
 \begin{Theorem}{\cite{KoppartyRonZewiSarafWootters_2018_IDo_CONF}}{}
 The list size above is of constant size only depends on $\eps$ and independent of the block length.
 \end{Theorem}
+We will basically show that if you take a subspace of small dimension then there can't be too many codewords in that subspace which are close enough to the received word. So we will use the following idea:
+\begin{idea*}
+Give a randomized algorithm and show that every close enough polynomial in $S$ is output by the algorithm with probability at least some constant.
+\end{idea*}
+\begin{proof}
+Consider the following randomized algorithm:
+\begin{algorithm}
+Pick $i_1,\dots, i_{t-1}$ coordinates independently uniformly at random\;
+\If{$\exs!\ f\in S$ such that $f$ agrees with $w$ at $i_1,\dots, i_{t-1}$}{
+    \Return{$f$}
+}
+\caption{Randomized List Decoder}
+\end{algorithm}
+\begin{observation}
+    Number of coordinates is the same as the subspace dimension since after fixing the values at those coordinates the polynomial is fixed.
+\end{observation}
+\begin{claimwidth}
+\begin{claim}{}{}
+    Fix any $f\in S$ such that $f$ agrees with $w$ on at least $\frac{k}{s}+\eps n$ coordinates. Then the probability that the above algorithm returns $f$ is at least $\eps^{t-1}$.
+\end{claim}
+\begin{proof}
+The above algorithm outputs $f$ if $f$ agrees with $w$ at those $(t-1)$ points and every other polynomials $\hat{f}\in S$ disagrees with $f$ in at least one of those $(t-1)$ points. Let $S_j$ be the subspace of polynomials in $S$ which agrees with $w$ at $i_l^{th}$ coordinate for all $l\in [j]$.  Then for the algorithm to output $f$ we need $\dim S_{j+1}<\dim S_{j}$ for all $j\in [t-1]$, take $S_0=S$ and $f\in S_{t-1}$.    Let $E_j$ be the event that $\dim S_j<\dim S_{j-1}$ and $f\in S_j$. 
+    \begin{observation}
+    If $\bigwedge\limits_{j=1}^{t-1} E_t$ happens then the algorithm outputs $f$.
+    \end{observation} 
+    $$        \bbP\lt[\bigwedge_{j=1}^{t-1} E_j\rt] = \prod\limits_{j=1}^{t-1}\bbP\lt[E_j\ \lt| \  \bigwedge_{l=1}^{j-1} E_l\rt.\rt]$$
+    Now assume $\bigwedge\limits_{l=1}^{j-1} E_l$. We have $S_l$ containing $f$ and $\dim S_l=t-1-l$. To calculate $\bbP\lt[E_{l+1}\ \lt| \ \bigwedge\limits_{l=1}^j E_l\rt.\rt]$ it is enough to show that there exists an $h\in S_j$ such that $f$ and $h$ disagree at $i_{j+1}$ and $f,w$ agrees at $i_{j+1}$. Therefore $$\bbP\lt[E_{l+1}\ \lt| \ \bigwedge\limits_{l=1}^j E_l\rt.\rt]= \underset{i_{j+1}}{\bbP}=[f,w \text{ agree at $i_{j+1}$}\wedge\ \exs\ h\in S_j\text{ such that $f_{i_{j+1}}\neq h_{i_{j+1}}$}]$$Now $f$ and $w$ agrees in at least $\frac{k}{s}+\eps n$ coordinates. And by \thmref{rate-dist-multicode} $f$ and any other codeword of $S$ can agree in at most $\frac{k}{s}$ coordinates. Fix any other codeword $h\in S_j$, $h\neq f$. So there are at least $\eps n$ coordinates where $f$ and $w$ agrees but $f$ and $h$ disagrees. Therefore $$\underset{i_{j+1}}{\bbP}=[f,w \text{ agree at $i_{j+1}$}\wedge\ \exs\ h\in S_j\text{ such that $f_{i_{j+1}}\neq h_{i_{j+1}}$}]\geq \eps$$ Hence the algorithm outputs $f$ with probability at least $\eps^{t-1}$. 
+\end{proof}
+\end{claimwidth}
+The above claim now directly implies that the list size is at most $\frac1{\eps^{t-1}}$. The algorithm outputs any close enough polynomial with probability at least $\eps^{t-1}$. So if there are $l$ such polynomials then the sum of the probabilities that the algorithm outputs those polynomials is at most $1$. Hence $l\leq \eps^{-(t-1)}$. Since $\eps$ and $t$ are constants this proves that the list size is constant. 
+\end{proof}
 \subsection{Local Correction of Multiplicity Codes}
