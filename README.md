@@ -53,7 +53,6 @@ An advanced exploration of **coding theory**, focusing on both foundational prin
 
 ---
 
-##  Typesetting & Style
 ## 🎨 Typesetting & Theme
 
 These lecture notes were typeset in LaTeX using a **custom eye-candy theme** developed by the me:
