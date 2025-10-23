@@ -1,1 +1,5 @@
 \section{Private Information Retrieval}
+Private Information Retrieval (PIR) schemes are cryptographic protocols designed to safeguard the privacy of database users. They allow clients to retrieve records from public databases while completely hiding the identity of the retrieved records from database owners.  However, a trivial solution is available where users can ask for a copy of the whole database, but the communication is enormous and is likely to be unacceptable. In 1995 Chor et al in \cite{ChorGoldreichKushilevitzSudan__Pir_CONF} came up with the notion of PIR schemes. They gave schemes for  replicated databases with a nontrivially small amount of communication. In such protocols users query each server holding the database and the protocol ensures that each individual server gets no information about the identity of the items of user interest. 
+
+\subsection{Introduction}
+We now make the notion of PIR schemes more concrete. We model database as a $k$-long $q$-query string $\bmx$ that is replicated between $r$ non-communicating servers. The user holds an index $i$
