@@ -134,3 +134,5 @@ ignore-*
 .dropbox
 *.orig
 sha.tex
+.auctex-auto
+_region*
